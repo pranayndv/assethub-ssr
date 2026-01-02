@@ -2,20 +2,36 @@ import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+
+
 export async function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
-  // ✅ Allow NextAuth API routes completely
-  if (pathname.startsWith("/api/auth")) {
+
+  if (pathname === "/api/auth/session") {
+    const accept = req.headers.get("accept") || "";
+
+    if (accept.includes("text/html")) {
+      return NextResponse.json(
+        { success: false, message: "Access Denied" },
+        { status: 403 }
+      );
+    }
+
+
     return NextResponse.next();
   }
 
-  // ✅ Allow public APIs
   if (pathname.startsWith("/api/public")) {
     return NextResponse.next();
   }
 
-  const token = await getToken({ req });
+  const token = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  });
+
+
 
   const protectedRoutes = ["/admin", "/manager", "/employee", "/profile"];
 
@@ -34,9 +50,10 @@ export async function middleware(req: NextRequest) {
     };
 
     return NextResponse.redirect(
-      new URL(roleRedirectMap[token.role as string] ?? "/", req.url)
+      new URL(roleRedirectMap[token.role] ?? "/", req.url)
     );
   }
+
 
   if (pathname.startsWith("/admin") && token?.role !== "ADMIN") {
     return NextResponse.redirect(new URL("/access-denied", req.url));
@@ -49,9 +66,9 @@ export async function middleware(req: NextRequest) {
   if (pathname.startsWith("/employee") && token?.role !== "EMPLOYEE") {
     return NextResponse.redirect(new URL("/access-denied", req.url));
   }
-
   return NextResponse.next();
 }
+
 
 export const config = {
   matcher: [
@@ -60,5 +77,8 @@ export const config = {
     "/manager/:path*",
     "/employee/:path*",
     "/profile",
+    "/admin/:path*",
+    "/api/:path*",
   ],
 };
+
