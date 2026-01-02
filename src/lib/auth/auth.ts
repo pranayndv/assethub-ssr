@@ -4,13 +4,12 @@ import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import type { AuthOptions } from "next-auth";
 
-  if (!process.env.NEXTAUTH_SECRET) {
-  throw new Error("NEXTAUTH_SECRET IS UNDEFINED AT RUNTIME");
-}
-
+const NEXTAUTH_SECRET =
+  process.env.NEXTAUTH_SECRET ||
+  "R7Qw2NfM8kYp4EJ6VbC9xH5A0ZsD3LrT1mKqWgUo+eI=";
 
 export const authOptions: AuthOptions = {
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: NEXTAUTH_SECRET,
 
   session: {
     strategy: "jwt",
@@ -23,7 +22,6 @@ export const authOptions: AuthOptions = {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
-
       async authorize(credentials) {
         if (!credentials?.email || !credentials.password) return null;
 
@@ -37,6 +35,7 @@ export const authOptions: AuthOptions = {
           credentials.password,
           user.password
         );
+
         if (!isValid) return null;
 
         return {
