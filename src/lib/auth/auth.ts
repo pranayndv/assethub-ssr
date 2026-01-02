@@ -5,8 +5,7 @@ import bcrypt from "bcryptjs";
 import type { AuthOptions } from "next-auth";
 
 const NEXTAUTH_SECRET =
-  process.env.NEXTAUTH_SECRET ||
-  "R7Qw2NfM8kYp4EJ6VbC9xH5A0ZsD3LrT1mKqWgUo+eI=";
+  process.env.NEXTAUTH_SECRET;
 
 export const authOptions: AuthOptions = {
   secret: NEXTAUTH_SECRET,
