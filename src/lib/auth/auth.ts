@@ -5,7 +5,7 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import type { AuthOptions } from "next-auth";
 
-const SECRET = "4a8bbcc0c05903e5ad3b1c8e680e75f3f85ef0b9c2d7de51b29c06fae943fd87"
+const SECRET = process.env.NEXTAUTH_SECRET as string;
 
 export const authOptions: AuthOptions = {
   session: {
