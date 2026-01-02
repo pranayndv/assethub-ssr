@@ -4,6 +4,11 @@ import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import type { AuthOptions } from "next-auth";
 
+  if (!process.env.NEXTAUTH_SECRET) {
+  throw new Error("NEXTAUTH_SECRET IS UNDEFINED AT RUNTIME");
+}
+
+
 export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 
