@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Session } from "next-auth";
 import MobileMenuButton from "./header/MobileMenuButton";
 import { getSession } from "@/actions/userActions";
+import LoginBtn from "./header/LoginBtn";
 
 
 const navLinks = [
@@ -53,17 +54,9 @@ export default async function Header() {
             ))}
 
             {!session ? (
-              <Link
-                href="/login"
-                className="
-                  px-5 py-2 rounded-md
-                  text-white text-sm font-medium
-                  bg-black border-2 border-gray-300
-                  hover:opacity-90 transition-all shadow-md
-                "
-              >
-                Login
-              </Link>
+              <div>
+                <LoginBtn/>
+              </div>
             ) : (
               <div className="flex items-center gap-4">
 
