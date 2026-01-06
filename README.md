@@ -390,3 +390,14 @@ src/app/api
 ```
 
 
+## Admin Flow Diagram
+![Admin Flow](public/doc/admin-flow.png)
+
+## Manager Flow Diagram
+![Manager Flow](public/doc/manager-flow.png)
+
+## Employee Flow Diagram
+![Employee Flow](public/doc/employee-flow.png)
+
+## ER Diagram
+![ER Diagram](public/doc/er-diagram.png)
