@@ -399,3 +399,21 @@ src/app/api
 
 ## ER Diagram
 ![ER Diagram](public/doc/er-diagram.png)
+
+
+## ENV 
+```
+DATABASE_URL=''
+NEXTAUTH_SECRET= 
+
+NEXTAUTH_URL=http://localhost:3000
+
+EMAIL_SERVER=smtp.ethereal.email
+EMAIL_PORT=587
+
+EMAIL_ID=
+EMAIL_PASS=
+```
+
+
+
