@@ -32,10 +32,10 @@ export default function AdminCreateManager({session}:{session:Session | null}) {
   });
 
   const onSubmit = async (formData: ManagerForm) => {
-    if (!session?.accessToken) {
-      toast.error("Unauthorized, please login again.");
-      return;
-    }
+    // if (!session?.accessToken) {
+    //   toast.error("Unauthorized, please login again.");
+    //   return;
+    // }
 
     const res = await createManager(formData);
 
