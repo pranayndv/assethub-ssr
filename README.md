@@ -1,7 +1,5 @@
 # AssetHub – Complete Route & API Documentation (From Source Code)
 
-This document is generated **directly from the uploaded project source (doc.zip)** and reflects the **actual routes and API handlers** present in the codebase.
-
 Tech Stack:
 
 * Next.js (App Router)
