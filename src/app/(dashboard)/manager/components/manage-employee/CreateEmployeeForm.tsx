@@ -38,10 +38,10 @@ export default function ManagerCreateEmployeeForm({session}:{session:Session | n
 
 
   const onSubmit = async (formData: EmployeeForm) => {
-    if (!session?.accessToken) {
-      toast.error("Unauthorized, please login again.");
-      return;
-    }
+    // if (!session?.accessToken) {
+    //   toast.error("Unauthorized, please login again.");
+    //   return;
+    // }
 
     try {
       const data = await createEmployee(formData);
